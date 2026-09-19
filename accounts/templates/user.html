@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+{{ profile.user.username }}<br>
+{{ profile.first_name }}<br>
+{{ profile.last_name }}<br>
+{{ profile.bio }}<br>
+ <img src="{{ profile.avatar.url }}" alt="">
+ {% if followed %}
+ <a href="{% url 'unfollow' profile.user.id %}"><button>Unfollow</button></a>
+
+ {% else %}
+ <a href="{% url 'follow' profile.user.id %}"><button>Follow</button></a>
+ 
+   {% endif %}
+</body>
+</html>

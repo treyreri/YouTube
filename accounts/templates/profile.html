@@ -9,6 +9,8 @@
     {{ profile.first_name}}<br>
     {{ profile.last_name}}<br>
     {{ profile.bio}}<br>
+
+    count of follows {{ follows }}
     <img src="{{ profile.avatar.url }}" alt="" width="300px">
 
     <a href="{% url 'add' %}"><button>add post</button></a>

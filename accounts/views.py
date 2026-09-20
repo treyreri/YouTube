@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random
 
-from .models import User, Profile
+from .models import User, Profile, Channel
 
 
 def register(request):
@@ -172,3 +172,33 @@ def logout_user(request):
     logout(request)
 
     return redirect('login')
+
+def create_channel(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    if not request.user.is_verified:
+        return render(request, 'error.html', {
+            'error': 'Your account is not verified'
+        })
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        avatar = request.FILES.get('avatar')
+
+        if not title:
+            return render(request, 'channel_create.html', {
+                'error': 'Title is required'
+            })
+
+        Channel.objects.create(
+            owner=request.user,
+            title=title,
+            description=description,
+            avatar=avatar
+        )
+
+        return redirect('profile')
+
+    return render(request, 'channel_create.html')

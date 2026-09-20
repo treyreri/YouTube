@@ -8,7 +8,7 @@ Register
 
 <div class="form-box card">
 
-    <h1>Create Account</h1>
+    <h1>create Account</h1>
 
     {% if error %}
         <div class="error">
@@ -20,35 +20,35 @@ Register
 
         {% csrf_token %}
 
-        <label>Username</label>
+        <label>username</label>
         <input type="text" name="username">
 
-        <label>Email</label>
+        <label>email</label>
         <input type="email" name="email">
 
-        <label>Password</label>
+        <label>password</label>
         <input type="password" name="password">
 
-        <label>First Name</label>
+        <label>first name</label>
         <input type="text" name="first_name">
 
-        <label>Last Name</label>
+        <label>last name</label>
         <input type="text" name="last_name">
 
-        <label>Bio</label>
+        <label>bio</label>
         <textarea name="bio"></textarea>
 
-        <label>Avatar</label>
+        <label>avatar</label>
         <input type="file" name="avatar">
 
         <button type="submit" class="btn">
-            Register
+            register
         </button>
 
     </form>
 
     <p style="margin-top: 20px;">
-        Already have an account?
+        already have an account?
         <a href="{% url 'login' %}">Login</a>
     </p>
 

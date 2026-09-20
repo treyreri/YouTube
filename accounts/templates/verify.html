@@ -8,7 +8,7 @@ Verify Email
 
 <div class="form-box card">
 
-    <h1>Verify Email</h1>
+    <h1>verify Email</h1>
 
     {% if error %}
         <div class="error">
@@ -17,21 +17,21 @@ Verify Email
     {% endif %}
 
     <p style="margin-bottom: 20px;">
-        Enter the verification code sent to your email.
+        enter the verification code sent to your email
     </p>
 
     <form method="POST">
 
         {% csrf_token %}
 
-        <label>Email</label>
+        <label>email</label>
         <input type="email" name="email">
 
-        <label>Verification Code</label>
+        <label>verification code</label>
         <input type="text" name="code">
 
         <button type="submit" class="btn">
-            Verify
+            verify
         </button>
 
     </form>

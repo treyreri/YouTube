@@ -8,7 +8,7 @@ Login
 
 <div class="form-box card">
 
-    <h1>Login</h1>
+    <h1>login</h1>
 
     {% if error %}
         <div class="error">
@@ -20,22 +20,22 @@ Login
 
         {% csrf_token %}
 
-        <label>Username</label>
+        <label>username</label>
         <input type="text" name="username">
 
-        <label>Password</label>
+        <label>password</label>
         <input type="password" name="password">
 
         <button type="submit" class="btn">
-            Login
+            login
         </button>
 
     </form>
 
     <p style="margin-top: 20px;">
-        Don't have an account?
+        don't have an account?
         <a href="{% url 'register' %}">
-            Register
+            register
         </a>
     </p>
 

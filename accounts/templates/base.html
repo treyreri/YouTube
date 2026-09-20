@@ -265,45 +265,45 @@
 <header>
 
     <a href="{% url 'home' %}" class="logo">
-        🌿 GreenTube
+        django-youtube
     </a>
 
     <nav>
 
         <a href="{% url 'video_list' %}">
-            Videos
+            videos
         </a>
 
         <a href="{% url 'search' %}">
-            Search
+            search
         </a>
 
         {% if user.is_authenticated %}
 
             <a href="{% url 'profile' %}">
-                Profile
+                profile
             </a>
 
             <a href="{% url 'create_channel' %}">
-                Create Channel
+                create channel
             </a>
 
             <a href="{% url 'upload_video' %}">
-                Upload
+                upload
             </a>
 
             <a href="{% url 'logout' %}">
-                Logout
+                logout
             </a>
 
         {% else %}
 
             <a href="{% url 'login' %}">
-                Login
+                login
             </a>
 
             <a href="{% url 'register' %}" class="btn">
-                Register
+                register
             </a>
 
         {% endif %}
@@ -322,7 +322,7 @@
 
 
 <footer>
-    GreenTube © 2026
+    django-youtube 2026
 </footer>
 
 </body>

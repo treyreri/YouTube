@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Create Channel</h1>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p>
+        <label>title:</label>
+        <input type="text" name="title">
+    </p>
+
+    <p>
+        <label>description:</label>
+        <textarea name="description"></textarea>
+    </p>
+
+    <p>
+        <label>avatar:</label>
+        <input type="file" name="avatar">
+    </p>
+
+    <button type="submit">create channel</button>
+</form>
+
+{% endblock %}

@@ -12,4 +12,5 @@ urlpatterns = [
 
     path( 'logout/',  views.logout_user,  name='logout' ),
     path('channels/create/', views.create_channel, name='create_channel'),
+    path('videos/upload/', views.upload_video, name='upload_video'),
 ]

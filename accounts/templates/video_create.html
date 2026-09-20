@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Upload Video</h1>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p>
+        <label>Channel:</label>
+
+        <select name="channel">
+            {% for channel in channels %}
+                <option value="{{ channel.id }}">
+                    {{ channel.title }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label>Title:</label>
+        <input type="text" name="title">
+    </p>
+
+    <p>
+        <label>Category:</label>
+        <input type="text" name="category">
+    </p>
+
+    <p>
+        <label>Description:</label>
+        <textarea name="description"></textarea>
+    </p>
+
+    <p>
+        <label>Video:</label>
+        <input type="file" name="video_file">
+    </p>
+
+    <button type="submit">Upload</button>
+</form>
+
+{% endblock %}

@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random
 
-from .models import User, Profile, Channel
+from .models import User, Profile, Channel, Video
 
 
 def register(request):
@@ -202,3 +202,54 @@ def create_channel(request):
         return redirect('profile')
 
     return render(request, 'channel_create.html')
+
+
+
+def upload_video(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    if not request.user.is_verified:
+        return render(request, 'error.html', {
+            'error': 'Your account is not verified'
+        })
+
+    channels = Channel.objects.filter(owner=request.user)
+
+    if request.method == 'POST':
+        channel_id = request.POST.get('channel')
+        title = request.POST.get('title')
+        category = request.POST.get('category')
+        description = request.POST.get('description')
+        video_file = request.FILES.get('video_file')
+
+        if not title:
+            return render(request, 'video_create.html', {
+                'channels': channels,
+                'error': 'Title is required'
+            })
+
+        if not video_file:
+            return render(request, 'video_create.html', {
+                'channels': channels,
+                'error': 'Video file is required'
+            })
+
+        channel = Channel.objects.get(
+            id=channel_id,
+            owner=request.user
+        )
+
+        Video.objects.create(
+            channel=channel,
+            title=title,
+            category=category,
+            description=description,
+            video_file=video_file
+        )
+
+        return redirect('video_list')
+
+    return render(request, 'video_create.html', {
+        'channels': channels
+    })

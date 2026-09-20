@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="">email</label>
-      <input type="email" name="email"><br>
-        <label for="">verification code</label>
-      <input type="text" name="code"><br>
+ {% extends 'base.html' %}
 
-      <button type="submit">Verify</button>
+{% block title %}
+Verify Email
+{% endblock %}
+
+{% block content %}
+
+<div class="form-box card">
+
+    <h1>Verify Email</h1>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <p style="margin-bottom: 20px;">
+        Enter the verification code sent to your email.
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Email</label>
+        <input type="email" name="email">
+
+        <label>Verification Code</label>
+        <input type="text" name="code">
+
+        <button type="submit" class="btn">
+            Verify
+        </button>
 
     </form>
-    {% if error %}
-    {{ error }}
-    {% endif %}
-</body>
-</html>
+
+</div>
+
+{% endblock %}

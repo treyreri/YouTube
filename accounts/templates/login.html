@@ -1,22 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
+ {% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+<div class="form-box card">
+
+    <h1>Login</h1>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+
         {% csrf_token %}
-      <label for="">username</label>
-      <input type="text" name = "username"><br>
-      <label for="">password</label>
-      <input type="password" name="password"><br>
-      <button type="submit">login</button>
+
+        <label>Username</label>
+        <input type="text" name="username">
+
+        <label>Password</label>
+        <input type="password" name="password">
+
+        <button type="submit" class="btn">
+            Login
+        </button>
 
     </form>
-    {% if error %}
-    {{ error }}
-    {% endif %}
-</body>
-</html>
+
+    <p style="margin-top: 20px;">
+        Don't have an account?
+        <a href="{% url 'register' %}">
+            Register
+        </a>
+    </p>
+
+</div>
+
+{% endblock %}

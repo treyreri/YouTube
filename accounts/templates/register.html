@@ -1,35 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post" enctype="multipart/form-data" >
-        {% csrf_token %}
-      <label for="">username</label>
-      <input type="text" name = "username"><br>
-      
-      <label for="">email</label>
-      <input type="email" name = "email"><br>
-      <label for="">password</label>
-      <input type="password" name="password"><br>
-      <label for="">first name</label>
-      <input type="text" name="f_name"><br>
-      <label for="">last  name</label>
-      <input type="text" name="l_name"><br>
-      <label for="">bio</label>
-      <input type="text" name="bio"><br>
-      <label for="">avatar</label>
-      <input type="file" name="avatar"><br>
+ {% extends 'base.html' %}
 
-      <button type="submit">register</button>
-      
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<div class="form-box card">
+
+    <h1>Create Account</h1>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username">
+
+        <label>Email</label>
+        <input type="email" name="email">
+
+        <label>Password</label>
+        <input type="password" name="password">
+
+        <label>First Name</label>
+        <input type="text" name="first_name">
+
+        <label>Last Name</label>
+        <input type="text" name="last_name">
+
+        <label>Bio</label>
+        <textarea name="bio"></textarea>
+
+        <label>Avatar</label>
+        <input type="file" name="avatar">
+
+        <button type="submit" class="btn">
+            Register
+        </button>
 
     </form>
-    {% if error %}
-    {{ error }}
-    {% endif %}
-</body>
-</html>
+
+    <p style="margin-top: 20px;">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+
+</div>
+
+{% endblock %}
